@@ -1,4 +1,4 @@
-#이것이 코딩 테스트다 Q3
+#이것이 코딩 테스트다 그리디 Q3
 
 def numberGame(n,m,array):
     answer=0
