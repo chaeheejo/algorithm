@@ -1,3 +1,5 @@
+#이것이 코딩 테스트다 Q2
+
 def bigNumber(n, m, k):
     total=0
     n.sort()
