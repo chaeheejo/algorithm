@@ -1,4 +1,4 @@
-#이것이 코딩 테스트다 Q2
+#이것이 코딩 테스트다 그리디 Q2
 
 def bigNumber(n, m, k):
     total=0
