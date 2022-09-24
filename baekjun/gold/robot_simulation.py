@@ -3,7 +3,6 @@ N, M = map(int,input().split())
 
 map = [['X']*A for _ in range(B)]
 go = {'N':(-1,0), 'W':(0,-1), 'S':(1,0), 'E':(0,1)}
-direction = {'N':0, 'W':1, 'S':2, 'E':3}
 left = ['N', 'W', 'S', 'E']
 right = ['E', 'S', 'W', 'N']
 
