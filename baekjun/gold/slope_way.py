@@ -1,57 +1,33 @@
 N, L = map(int, input().split())
-
-way = []
-for _ in range(N):
-    way.append(list(map(int, input().split())))
+way = [list(map(int, input().split())) for _ in range(N)]
 
 answer=0
 def count_way(w):
     global answer
-    maximum = max(w)
-    cnt = w.count(maximum)
-    less = w.count(maximum-1)
-    more = w.count(maximum+1)
 
-    if cnt==N:
-        answer+=1
-        print(w, 1)
-    else:
-        left = -1
-        right = -1
-        if less>0 and more==0:
-            for i in range(len(w)):
-                if w[i]==maximum-1:
-                    if left==-1:
-                        left=i
-                        right=i
-                    else:
-                        right=i
-                else:
-                    if right-left+2>L and (left==0 or right==N-1):
-                        answer+=1
-                        print(w, 2)
-                    left=-1
-                    right=-1
-
-        elif less==0 and more>0:
-            for i in range(len(w)):
-                if w[i]==maximum+1:
-                    if left==-1:
-                        left=i
-                        right=i
-                    else:
-                        right=i
-                else:
-                    if right-left+2>L and (left==0 or right==N-1):
-                        answer+=1
-                        print(w, 3)
-                    left=-1
-                    right=-1
+    for i in range(N-1):
+        if abs(w[i]-w[i+1])>1:
+            return
+        if w[i]>w[i+1]:
+            for k in range(L):
+                if i+1+k >= N or w[i+1]!=w[i+1+k] or used[i+1+k]:
+                    return
+                if w[i+1]==w[i+1+k]:
+                    used[i+1+k]=True
+        elif w[i]<w[i+1]:
+            for k in range(L):
+                if i-k<0 or w[i]!=w[i-k] or used[i-k]:
+                    return
+                if w[i]==w[i-k]:
+                    used[i-k]=True
+    answer+=1
 
 for w in way:
+    used=[False]*N
     count_way(w)
 
 for i in range(N):
+    used = [False]*N
     count_way([w[i] for w in way])
 
 print(answer)
