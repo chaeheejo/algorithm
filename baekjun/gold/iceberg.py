@@ -9,7 +9,8 @@ for i in range(N):
 
 dx = [-1,1,0,0]
 dy = [0,0,1,-1]
-def after_one_year(iceberg, temp_ice):
+def after_one_year(temp_ice):
+    global iceberg
     temp_iceberg = [item[:] for item in iceberg]
     for i, j in temp_ice:
 
@@ -22,9 +23,9 @@ def after_one_year(iceberg, temp_ice):
             if iceberg[nx][ny]<=0:
                 temp_iceberg[i][j] -= 1
 
-        if (i,j) in ice and temp_iceberg[i][j]<=0:
+        if temp_iceberg[i][j]<=0:
             ice.remove((i,j))
-    return temp_iceberg
+    iceberg = temp_iceberg
 
 def count_block():
     queue = [(ice[0][0], ice[0][1])]
@@ -53,13 +54,14 @@ def count_block():
 
 answer=0
 while True:
-    if count_block()==True:
-        break
-
-    iceberg = after_one_year(iceberg, ice[:])
+    after_one_year(ice[:])
     answer+=1
 
     if len(ice)==0:
+        answer=0
+        break
+
+    if count_block():
         break
 
 print(answer)
