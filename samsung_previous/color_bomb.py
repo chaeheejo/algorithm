@@ -44,11 +44,8 @@ def gravity():
 def rotate():
     new_board = [[0]*N for _ in range(N)]
     for j in range(N):
-        tmp=[]
         for i in range(N):
-            tmp.append(board[i][j])
-        for y in range(N):
-            new_board[N-1-j][y] = tmp[y]
+            new_board[N-1-j][i] = board[i][j]
     return new_board
 
 answer=0
