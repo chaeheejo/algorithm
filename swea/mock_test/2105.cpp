@@ -19,7 +19,8 @@ int dxy[][2]={
 
 int make_square(int x, int y, int rlen, int clen){
     int flag=1;
-    int desert[101] = {0,};
+    int dessert[101] = {0,};
+    int nx = x, ny = y;
     int nx = x, ny = y;
     
     for(int k=0;k<4;k++){
@@ -36,11 +37,11 @@ int make_square(int x, int y, int rlen, int clen){
                 flag=0;
                 break;
             }
-            if(desert[board[nx][ny]]!=0){
+            if(dessert[board[nx][ny]]!=0){
                 flag=0;
                 break;
             }
-            desert[board[nx][ny]]=1;
+            dessert[board[nx][ny]]=1;
         }
         if(!flag)
             break;
@@ -49,7 +50,7 @@ int make_square(int x, int y, int rlen, int clen){
     if(flag){
         int cnt =0;
         for(int i=0;i<101;i++){
-            if(desert[i]==0)
+            if(dessert[i]==0)
                 continue;
             cnt++;
         }
@@ -59,7 +60,7 @@ int make_square(int x, int y, int rlen, int clen){
     return -1;
 }
 
-int count_desert(int x, int y){
+int count_dessert(int x, int y){
     int rtn=-1;
     for(int w=1;w<=N;w++){
         for(int h=1;h<=N;h++){
@@ -88,7 +89,7 @@ int main(){
         
         for(int i=1;i<N-1;i++){
             for(int j=0;j<N-2;j++){
-                int cur = count_desert(i,j);
+                int cur = count_dessert(i,j);
                 if(cur>answer){
                     answer = cur;
                 }
